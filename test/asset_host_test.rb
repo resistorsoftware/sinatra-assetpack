@@ -34,13 +34,13 @@ class AssetHostTest < UnitTest
   test "host gets added to image helper path in production" do
     app.stubs(:production?).returns(true)
     get '/helper/img'
-    assert_equal "<img src='//cdn.example.org/images/foo.jpg' />", body 
+    assert_equal "<img src='//cdn.example.org/images/foo.jpg' />", body
   end
 
   test "host doesn't get added to image helper path in development" do
     app.stubs(:production?).returns(false)
     get '/helper/img'
-    assert_equal "<img src='/images/foo.jpg' />", body 
+    assert_equal "<img src='/images/foo.jpg' />", body
   end
 
   test "host gets added to css image path in production" do
