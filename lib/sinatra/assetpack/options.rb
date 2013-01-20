@@ -158,6 +158,7 @@ module Sinatra
       attrib :css_compression_options  # Hash
 
       attrib :prebuild          # Bool
+      attrib :host              # String
 
       def expires(*args)
         if args.empty?
@@ -253,7 +254,7 @@ module Sinatra
         file.sub(/^(.*)(\.[^\.]+)$/) { file, extension = $1, $2 }
 
         # Remove cache-buster (/js/app.28389.js => /js/app)
-        file = $1 if file =~ /^(.*)\.[0-9]+$/
+        file = $1 if file =~ /^(.*)\.[a-f0-9]+$/
 
         matches = Dir[File.join(app.root, from, "#{file}.*")]
 
@@ -321,6 +322,10 @@ module Sinatra
         tuples = paths.map { |key| [key, files[key]] }
 
         HashArray[*tuples.flatten]
+      end
+
+      def production_host
+        @host ? '//' + @host : ''
       end
 
     private
