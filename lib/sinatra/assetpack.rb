@@ -34,7 +34,7 @@ module Sinatra
       formats.each { |tilt, out| re[out] << tilt }
       out
     end
-    
+
     # Clear Tilt::Cache (used for primarily for tests)
     def self.clear_tilt_cache!(cache, app)
       cache.clear

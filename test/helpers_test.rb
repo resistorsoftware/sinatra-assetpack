@@ -20,7 +20,7 @@ class HelpersTest < UnitTest
     assert body =~ %r{width='16'}
     assert body =~ %r{height='16'}
   end
-  
+
   test "img existing (production)" do
     app.stubs(:development?).returns(false)
     get '/helper/email'

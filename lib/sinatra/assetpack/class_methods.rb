@@ -27,7 +27,7 @@ module Sinatra
             if defined?(settings.assets.app.clear_tilt_cache) && settings.assets.app.clear_tilt_cache
               AssetPack.clear_tilt_cache!(@template_cache, settings.assets.app)
             end
-            
+
             mtime, contents = @template_cache.fetch(package.path) {
               [ package.mtime, package.minify ]
             }
@@ -52,12 +52,12 @@ module Sinatra
             else
               clean_file = file
             end
-            
+
             # Sanity checks
             pass unless AssetPack.supported_formats.include?(fmt)
-            
+
             fn = asset_path_for(clean_file, from) or pass
-            
+
             pass if settings.assets.ignored?("#{path}/#{clean_file}")
 
             # Send headers
@@ -70,7 +70,7 @@ module Sinatra
             if defined?(settings.assets.app.clear_tilt_cache) && settings.assets.app.clear_tilt_cache
               AssetPack.clear_tilt_cache!(@template_cache, settings.assets.app)
             end
-            
+
             if AssetPack.supported_formats.include?(format)
               # Static file
               if fmt == 'css'

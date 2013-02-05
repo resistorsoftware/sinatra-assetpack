@@ -10,12 +10,12 @@ class AssetHostTest < UnitTest
       serve '/css',     :from => 'app/css'
       serve '/js',      :from => 'app/js'
       serve '/images',  :from => 'app/images'
-      
+
       asset_hosts [
         '//cdn-0.example.org',
         '//cdn-1.example.org'
       ]
-      
+
       css :a, ["/css/style.css"]
       js :b, ["/js/hello.js"]
     }
@@ -58,7 +58,7 @@ class AssetHostTest < UnitTest
     app.stubs(:development?).returns(false)
     get '/css/style.css'
     assert body.include?('background: url(//cdn-1.example.org/images/background.b1946ac92492d2347c6235b4d2611184.jpg)')
-    
+
     # does not alter non-existing files (design or flaw???)
     assert body.include?('background: url(/images/404.png)')
   end
@@ -68,7 +68,7 @@ class AssetHostTest < UnitTest
     file = '/js/hello.js'
     assert !(Sinatra::AssetPack::HtmlHelpers.get_file_uri(file, TestApp.assets) =~ /cdn-[0|1].example.org/)
   end
-  
+
   test "add asset host to filename in production/qa mode" do
     app.stubs(:development?).returns(false)
     file = '/js/hello.js'

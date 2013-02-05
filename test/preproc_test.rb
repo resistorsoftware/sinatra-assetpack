@@ -5,7 +5,6 @@ class PreprocTest < UnitTest
     app.stubs(:clear_tilt_cache).returns(true)
     app.stubs(:development?).returns(false)
     get '/css/screen.css'
-    
     assert body =~ %r{email.[a-f0-9]{32}.png}
   end
 

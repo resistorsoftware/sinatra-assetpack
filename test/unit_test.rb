@@ -110,7 +110,7 @@ class AppTest < UnitTest
     get '/helpers/css'
     assert body =~ %r{link rel='stylesheet' href='/css/screen.efa279aa02235f0a587791c1ac5d99b9.css' media='screen'}
   end
-  
+
   test "helpers css (production)" do
     app.stubs(:development?).returns(false)
     get '/helpers/css'

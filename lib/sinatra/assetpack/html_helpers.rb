@@ -17,7 +17,7 @@ module Sinatra
         raise RuntimeError, "You must pass in an asset for a URI to be created for it." if file.nil?
 
         local = assets.local_file_for file
-        
+
         hosts = assets.asset_hosts
         dev = assets.app.settings.development?
         file = dev ? file : BusterHelpers.add_cache_buster(file, local)
