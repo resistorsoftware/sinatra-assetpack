@@ -22,6 +22,7 @@ class GlobTest < UnitTest
 
   should "match double-star globs recursively" do
     get '/a'
+    puts body
     assert body.include?("a/b/c1/hello.")
     assert body.include?("a/b/c2/hi.")
     assert body.include?("a/b/c2/hola.")
@@ -29,12 +30,14 @@ class GlobTest < UnitTest
 
   should "match single-star globs in filenames" do
     get '/b'
+    puts body
     assert body.include?("a/b/c2/hi.")
     assert body.include?("a/b/c2/hola.")
   end
 
   should "match single-star globs in paths" do
     get '/c'
+    puts body
     assert body.include?("a/b/c1/hello.")
     assert body.include?("a/b/c2/hi.")
     assert body.include?("a/b/c2/hola.")
